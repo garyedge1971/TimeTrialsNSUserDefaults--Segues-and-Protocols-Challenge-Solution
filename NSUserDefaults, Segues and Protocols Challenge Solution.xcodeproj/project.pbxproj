@@ -21,6 +21,8 @@
 		B1496B4019142A60004F92B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1496B2219142A60004F92B2 /* UIKit.framework */; };
 		B1496B4819142A60004F92B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1496B4619142A60004F92B2 /* InfoPlist.strings */; };
 		B1496B4A19142A60004F92B2 /* NSUserDefaults__Segues_and_Protocols_Challenge_SolutionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1496B4919142A60004F92B2 /* NSUserDefaults__Segues_and_Protocols_Challenge_SolutionTests.m */; };
+		B1496B5519142AC3004F92B2 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1496B5419142AC3004F92B2 /* SignInViewController.m */; };
+		B1496B5819142AD9004F92B2 /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1496B5719142AD9004F92B2 /* CreateAccountViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		B1496B4519142A60004F92B2 /* NSUserDefaults, Segues and Protocols Challenge SolutionTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NSUserDefaults, Segues and Protocols Challenge SolutionTests-Info.plist"; sourceTree = "<group>"; };
 		B1496B4719142A60004F92B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B1496B4919142A60004F92B2 /* NSUserDefaults__Segues_and_Protocols_Challenge_SolutionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSUserDefaults__Segues_and_Protocols_Challenge_SolutionTests.m; sourceTree = "<group>"; };
+		B1496B5319142AC3004F92B2 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		B1496B5419142AC3004F92B2 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		B1496B5619142AD9004F92B2 /* CreateAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAccountViewController.h; sourceTree = "<group>"; };
+		B1496B5719142AD9004F92B2 /* CreateAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAccountViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,10 @@
 				B1496B2D19142A60004F92B2 /* RTFAppDelegate.h */,
 				B1496B2E19142A60004F92B2 /* RTFAppDelegate.m */,
 				B1496B3019142A60004F92B2 /* Main.storyboard */,
+				B1496B5619142AD9004F92B2 /* CreateAccountViewController.h */,
+				B1496B5719142AD9004F92B2 /* CreateAccountViewController.m */,
+				B1496B5319142AC3004F92B2 /* SignInViewController.h */,
+				B1496B5419142AC3004F92B2 /* SignInViewController.m */,
 				B1496B3319142A60004F92B2 /* RTFViewController.h */,
 				B1496B3419142A60004F92B2 /* RTFViewController.m */,
 				B1496B3619142A60004F92B2 /* Images.xcassets */,
@@ -250,7 +260,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1496B5519142AC3004F92B2 /* SignInViewController.m in Sources */,
 				B1496B2B19142A60004F92B2 /* main.m in Sources */,
+				B1496B5819142AD9004F92B2 /* CreateAccountViewController.m in Sources */,
 				B1496B2F19142A60004F92B2 /* RTFAppDelegate.m in Sources */,
 				B1496B3519142A60004F92B2 /* RTFViewController.m in Sources */,
 			);

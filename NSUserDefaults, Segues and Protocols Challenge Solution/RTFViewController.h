@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RTFViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UILabel *untitledLabel1;
+@property (strong, nonatomic) IBOutlet UILabel *untitledLabel2;
 
 @end
