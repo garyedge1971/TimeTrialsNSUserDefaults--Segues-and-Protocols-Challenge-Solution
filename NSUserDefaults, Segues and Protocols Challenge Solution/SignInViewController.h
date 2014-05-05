@@ -13,5 +13,7 @@
 
 - (IBAction)createAccountButtonPressed:(UIBarButtonItem *)sender;
 - (IBAction)loginButtonPressed:(UIButton *)sender;
+@property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @end

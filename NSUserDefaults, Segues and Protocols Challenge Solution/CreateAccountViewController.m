@@ -7,6 +7,7 @@
 //
 
 #import "CreateAccountViewController.h"
+#import "UserAccount.h"
 
 @interface CreateAccountViewController ()
 
@@ -68,6 +69,15 @@
         [errorAlert show];
         self.passwordTextField.text = @"";
         self.confirmPasswordTextField.text = @"";
+        //set focus back to passwordTextField
+        [self.passwordTextField becomeFirstResponder];
+        return;
+    }
+    if ([self.delegate doesAccountExistAlready:self.userNameTextField.text]) {
+        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Username Exists" message:@"That username already exists" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [errorAlert show];
+        self.userNameTextField.text = @"";
+        [self.userNameTextField becomeFirstResponder];
         return;
     }
     [self.delegate didCreateAccount];

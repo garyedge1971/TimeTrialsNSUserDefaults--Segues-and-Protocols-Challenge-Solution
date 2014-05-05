@@ -11,6 +11,7 @@
 @protocol CreateAccountViewControllerDelegate <NSObject>
 -(void) didCreateAccount;
 -(void) didCancel;
+-(BOOL) doesAccountExistAlready:(NSString *)addedUsername;
 
 @end
 
@@ -25,5 +26,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
 - (IBAction)createButtonPressed:(UIButton *)sender;
 - (IBAction)cancelButtonPressed:(UIButton *)sender;
+
+//@property (strong, nonatomic)
 
 @end

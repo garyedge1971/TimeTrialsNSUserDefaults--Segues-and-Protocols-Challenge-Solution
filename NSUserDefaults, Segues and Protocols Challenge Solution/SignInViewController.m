@@ -8,8 +8,13 @@
 
 #import "SignInViewController.h"
 #import "CreateAccountViewController.h"
+#import "RTFViewController.h"
+#import "UserAccount.h"
 
 @interface SignInViewController ()
+
+@property (strong, nonatomic) NSMutableArray *userAccounts;
+@property (strong, nonatomic) UserAccount *addedUserAccount;
 
 @end
 
@@ -22,6 +27,14 @@
         // Custom initialization
     }
     return self;
+}
+
+//Lazy instantiation of added user account
+-(UserAccount *)addedUserAccount{
+    if (!_addedUserAccount) {
+        _addedUserAccount = [[UserAccount alloc] init];
+    }
+    return _addedUserAccount;
 }
 
 - (void)viewDidLoad
@@ -37,9 +50,23 @@
 }
 
 #pragma mark - Protocol Methods
--(void) didCreateAccount
+-(BOOL) doesAccountExistAlready:(NSString *)addedUsername;
 {
-
+//    BOOL foundAccount = NO;
+    for (UserAccount *userAccount in self.userAccounts) {
+        if ([userAccount.username isEqualToString:addedUsername]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+-(void) didCreateAccount:(NSString *)addedUsername didAddPassword:(NSString *)addedUserPassword;
+{
+    self.addedUserAccount.username = addedUsername;
+    self.addedUserAccount.password = addedUserPassword;
+    
+    [self.userAccounts addObject:self.addedUserAccount];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -56,13 +83,22 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    CreateAccountViewController *createAccountVC = segue.destinationViewController;
-    createAccountVC.delegate = self;
+    //Introspection
+    if ([segue.destinationViewController isKindOfClass:[CreateAccountViewController class]]) {
+        CreateAccountViewController *createAccountVC = segue.destinationViewController;
+        createAccountVC.delegate = self;
+    }
+    else if ([segue.destinationViewController isKindOfClass:[RTFViewController class]])
+    {
+        
+    }
+
 }
 
 
 - (IBAction)createAccountButtonPressed:(UIBarButtonItem *)sender {
     [self performSegueWithIdentifier:@"toCreateAccountViewController" sender:sender];
+    
 }
 
 - (IBAction)loginButtonPressed:(UIButton *)sender {
