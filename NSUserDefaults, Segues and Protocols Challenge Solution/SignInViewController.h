@@ -15,5 +15,6 @@
 - (IBAction)loginButtonPressed:(UIButton *)sender;
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (strong, nonatomic) IBOutlet UILabel *welcomeMessageWithUserCountLabel;
 
 @end

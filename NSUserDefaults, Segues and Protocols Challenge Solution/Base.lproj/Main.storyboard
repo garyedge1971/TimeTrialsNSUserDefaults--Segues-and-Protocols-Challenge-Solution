@@ -39,6 +39,13 @@
                                     <action selector="loginButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="S6a-bX-5EE"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgS-Jm-T8b">
+                                <rect key="frame" x="20" y="74" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -52,6 +59,7 @@
                     <connections>
                         <outlet property="passwordTextField" destination="MBS-pU-Yd2" id="gb1-VH-wlG"/>
                         <outlet property="usernameTextField" destination="Vvz-vq-f4q" id="YoU-TV-QMR"/>
+                        <outlet property="welcomeMessageWithUserCountLabel" destination="XgS-Jm-T8b" id="4zp-6y-Kdd"/>
                         <segue destination="UME-Se-Vxn" kind="modal" identifier="toCreateAccountViewController" id="lSe-K4-iIa"/>
                         <segue destination="CuO-d5-Hag" kind="modal" identifier="toViewController" id="vVH-ww-BKK"/>
                     </connections>
