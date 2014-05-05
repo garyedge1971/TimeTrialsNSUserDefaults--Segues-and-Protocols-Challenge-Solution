@@ -26,6 +26,12 @@
 {
     [super viewDidLoad];
     //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"myKey"];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self loadUserAccounts];
 }
 
@@ -65,7 +71,7 @@
 #pragma mark - Protocol Methods
 -(BOOL) doesAccountExistAlready:(NSString *)addedUsername;
 {
-//    BOOL foundAccount = NO;
+    //    BOOL foundAccount = NO;
     for (UserAccount *userAccount in self.userAccounts) {
         if ([userAccount.username isEqualToString:addedUsername]) {
             return YES;
@@ -86,10 +92,10 @@
     }
     
     NSDictionary *addedUserAsPList = [self convertUserToPList:self.addedUserAccount];
-    NSLog(@"Saved user objects array has %i objects.", savedUserAccounts.count);
+    NSLog(@"Saved user objects array has %lu objects.", (unsigned long)savedUserAccounts.count);
     [savedUserAccounts addObject:addedUserAsPList];
-    
-    [[NSUserDefaults standardUserDefaults] setObject:addedUserAsPList forKey:@"myKey"];
+    // Rob you made a typo....you set setObject to addedUserAsPlist by mistake
+    [[NSUserDefaults standardUserDefaults] setObject:savedUserAccounts forKey:@"myKey"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -112,9 +118,12 @@
 
 -(UserAccount *) convertPListToUser:(NSDictionary *)pList
 {
+    NSString *username = pList[USER_NAME];
+    NSString *password = pList[USER_PASSWORD];
+    NSLog(@"username = %@ \n password = %@", username, password);
     UserAccount *userAccount = [[UserAccount alloc] init];
-    NSLog(@"%@",pList[USER_NAME]);
-    NSLog(@"%@",[pList description]);
+    
+    
     userAccount.username = pList[USER_NAME];
     userAccount.password = pList[USER_PASSWORD];
     return userAccount;
@@ -122,23 +131,30 @@
 
 -(void) loadUserAccounts
 {
-//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"myKey"];
+    //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"myKey"];
+    // Remove all entries from Array and then add back in otherwise accounts just keep doubling up when view reloads using (viewWillAppear:)
+    
+    [self.userAccounts removeAllObjects];
+    
     NSMutableArray *savedUserAccounts = [[[NSUserDefaults standardUserDefaults] objectForKey:@"myKey"] mutableCopy];
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
     if (savedUserAccounts.count == 0) {
         //savedUserAccounts = [[NSMutableArray alloc] init];
     }
     else
     {
-        NSLog(@"%i", savedUserAccounts.count);
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        NSLog(@"%lu", (unsigned long)savedUserAccounts.count);
+        //[[NSUserDefaults standardUserDefaults] synchronize];
         for (NSDictionary *userAccount in savedUserAccounts) {
+            
             [self.userAccounts addObject:[self convertPListToUser:userAccount]];
         }
     }
-    int numberOfUsers = self.userAccounts.count;
-//    *welcomeMessage = @"";
-    self.welcomeMessageWithUserCountLabel.text = [NSString stringWithFormat:@"Welcome. There are %i registered users",numberOfUsers];
+    NSUInteger numberOfUsers = self.userAccounts.count;
+    //    *welcomeMessage = @"";
+    self.welcomeMessageWithUserCountLabel.text = [NSString stringWithFormat:@"Welcome. There are %lu registered users",(unsigned long)numberOfUsers];
 }
 
 #pragma mark - Navigation
@@ -155,12 +171,12 @@
     }
     else if ([segue.destinationViewController isKindOfClass:[RTFViewController class]])
     {
-//        RTFViewController *loggedInVC = [[RTFViewController alloc] init];
+        //        RTFViewController *loggedInVC = [[RTFViewController alloc] init];
         RTFViewController *loggedInVC = segue.destinationViewController;
         loggedInVC.loggedUserInAccount.username = self.usernameTextField.text;
         loggedInVC.loggedUserInAccount.password = self.passwordTextField.text;
     }
-
+    
 }
 
 
@@ -170,7 +186,7 @@
 }
 
 - (IBAction)loginButtonPressed:(UIButton *)sender {
-//    NSLog(@"Number of user accounts = %i", self.userAccounts.count);
+    //    NSLog(@"Number of user accounts = %i", self.userAccounts.count);
     for (UserAccount *userAccount in self.userAccounts) {
         if ([self.usernameTextField.text isEqualToString:userAccount.username]) {
             if ([self.passwordTextField.text isEqualToString:userAccount.password]) {
