@@ -18,7 +18,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    self.untitledLabel1.text = self.loggedUserInAccount.username;
+    self.untitledLabel2.text = self.loggedUserInAccount.password;
+}
+
+//Lazy instantiation of logged in user account
+-(UserAccount *)loggedUserInAccount{
+    if (!_loggedUserInAccount) {
+        _loggedUserInAccount = [[UserAccount alloc] init];
+    }
+    return _loggedUserInAccount;
 }
 
 - (void)didReceiveMemoryWarning

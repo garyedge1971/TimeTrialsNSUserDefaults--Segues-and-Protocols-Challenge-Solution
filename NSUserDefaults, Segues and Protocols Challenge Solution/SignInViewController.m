@@ -37,6 +37,14 @@
     return _addedUserAccount;
 }
 
+//Lazy instantiation of user accounts
+-(NSMutableArray *)userAccounts{
+    if (!_userAccounts) {
+        _userAccounts = [[NSMutableArray alloc] init];
+    }
+    return _userAccounts;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -90,7 +98,10 @@
     }
     else if ([segue.destinationViewController isKindOfClass:[RTFViewController class]])
     {
-        
+//        RTFViewController *loggedInVC = [[RTFViewController alloc] init];
+        RTFViewController *loggedInVC = segue.destinationViewController;
+        loggedInVC.loggedUserInAccount.username = self.usernameTextField.text;
+        loggedInVC.loggedUserInAccount.password = self.passwordTextField.text;
     }
 
 }
@@ -102,6 +113,24 @@
 }
 
 - (IBAction)loginButtonPressed:(UIButton *)sender {
-    [self performSegueWithIdentifier:@"toViewController" sender:sender];
+//    NSLog(@"Number of user accounts = %i", self.userAccounts.count);
+    for (UserAccount *userAccount in self.userAccounts) {
+        if ([self.usernameTextField.text isEqualToString:userAccount.username]) {
+            if ([self.passwordTextField.text isEqualToString:userAccount.password]) {
+                [self performSegueWithIdentifier:@"toViewController" sender:sender];
+                return;
+            } else
+            {
+                //Password is incorrect
+                UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Password Incorrect" message:@"The password you entered is incorrect." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [errorAlert show];
+                return;
+            }
+        }
+    }
+    //Username not found
+    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Username Unknown" message:@"Username not found. Please try again or create an account." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [errorAlert show];
+    return;
 }
 @end

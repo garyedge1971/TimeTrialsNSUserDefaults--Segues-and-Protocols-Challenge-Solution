@@ -65,7 +65,7 @@
         return;
     }
     if (![self.passwordTextField.text isEqualToString:self.confirmPasswordTextField.text]) {
-        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Passwords No Matchy" message:@"The entered passwords do not match" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Passwords Don't Match" message:@"The entered passwords do not match. Please re-enter them." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [errorAlert show];
         self.passwordTextField.text = @"";
         self.confirmPasswordTextField.text = @"";
@@ -80,7 +80,7 @@
         [self.userNameTextField becomeFirstResponder];
         return;
     }
-    [self.delegate didCreateAccount];
+    [self.delegate didCreateAccount:self.userNameTextField.text didAddPassword:self.passwordTextField.text];
 }
 
 - (IBAction)cancelButtonPressed:(UIButton *)sender {

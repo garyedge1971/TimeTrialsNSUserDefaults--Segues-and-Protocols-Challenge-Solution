@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol CreateAccountViewControllerDelegate <NSObject>
--(void) didCreateAccount;
+-(void) didCreateAccount:(NSString *)addedUsername didAddPassword:(NSString *)addedUserPassword;
 -(void) didCancel;
 -(BOOL) doesAccountExistAlready:(NSString *)addedUsername;
 

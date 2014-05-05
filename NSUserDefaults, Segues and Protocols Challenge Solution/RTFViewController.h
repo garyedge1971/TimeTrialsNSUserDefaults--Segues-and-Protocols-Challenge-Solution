@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserAccount.h"
 
 @interface RTFViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UILabel *untitledLabel1;
 @property (strong, nonatomic) IBOutlet UILabel *untitledLabel2;
+
+@property (strong, nonatomic) UserAccount *loggedUserInAccount;
 
 @end
